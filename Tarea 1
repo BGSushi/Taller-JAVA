@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class Tarea1 {
+    
+    public static void main(String[] args){
+       Scanner opciones=new Scanner(System.in);
+        int menu;
+        float totalVentas = 0.0f;
+        do {
+        System.out.println("\n--- Menú Principal ---");
+        System.out.println("Selecciona una opcion");
+        System.out.println("1.-Registrar un pedido");
+        System.out.println("2.- Mostrar el total de ventas");
+        System.out.println("3.Salir del sistema");
+
+        menu=opciones.nextInt();
+
+        switch (menu) {
+            case 1:
+            String platillo;
+            String respuesta;
+            float precio;
+            Scanner pedido=new Scanner(System.in);
+            
+            do{
+                
+            System.out.println("Registrar pedido");
+            
+            System.out.println("Platillo: ");
+            platillo=pedido.nextLine();
+            
+            System.out.println("Precio: ");
+            precio=pedido.nextFloat();
+            pedido.nextLine(); 
+
+            // Sumamos el precio al total de ventas
+                        totalVentas += precio;
+
+                        System.out.println("Pedido registrado: " + platillo + " - $" + precio);
+            
+            System.out.println("Desea agregar otro platillo s/n?");
+            respuesta=pedido.nextLine();
+
+            }while (respuesta.equalsIgnoreCase("s")) ;
+            System.out.println("Registro de pedidos finalizado.");
+            pedido.close();
+            break;
+            
+            case 2:
+            System.out.println("--- Total de Ventas ---");
+                    // Mostramos el total de ventas almacenado
+                    System.out.printf("El total acumulado de ventas es: $%.2f%n", totalVentas);
+            break;
+
+            case 3:
+            System.out.println("Saliendo del sistema...");
+            break;
+
+            default:
+            System.out.println("Opción no válida. Por favor, intenta de nuevo.");
+        }
+    
+        }while(menu != 3);
+        opciones.close(); // Cerrar el Scanner al finalizar
+    }
+}
